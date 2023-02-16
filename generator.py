@@ -7,8 +7,7 @@ Each ID can be summarized in 4 segments, 3 four character segments and 1 six
 character segment. For example "1100 1101 0100 001101"
 """
 
-import argparse
-from typing import Tuple
+import argparse, re
 from functools import partial
 
 """
@@ -24,99 +23,103 @@ For example, Melozio has the following code
 01 1100 01 1101 01 0100 10 010110 10
 """
 
+def _rearrange_140_to_18(segments: str) -> tuple[str, str, str, str]:
+	"""Rearrange the 140 bit code to 18 bits, removing the separator bits and getting the code for capsule"""
 
-def _getID() -> Tuple[str, str, str, str]:
-	"""Get the code from the user
-	"""
+def get_info_from_bits() -> tuple[str, str, str, str]:
+	"""Get the code from the user """
 
-	parser = argparse.ArgumentParser(description="Generate a code to pass to the printer.")  # noqa
 	parser.add_argument(
 		"ID",
 		nargs="+",
-		help="The ID to generate a code with. Formated like this, '1100 1101 0100 001101'"  # noqa
+		help="The ID to generate a code with"  # noqa
 	)
 
 	segments = parser.parse_args().ID
 
 	# verify the segments
-	if len(segments) != 4:
-		print("Did not get 4 segments!")
-		parser.exit()
-		pass
+	if (len(segments) == 4 and len(''.join(segments)) == 18):
+		if re.match('[^01]', ''.join(segments)):
+			return segments
 
-	for i, segment in enumerate(segments):
-		# check if each segment only contains 1s and 0s
-		if any(c not in "10" for c in segment):
-			print(f"Segment {i+1} has invalid characters! It can only contain 1s and 0s.")  # noqa
-			parser.exit()
-			pass
-
-		# check if the length is correct
-		if i == 3:
-			if len(segment) != 6:
-				print("Segment 4 does not have 6 characters!")
-				parser.exit()
-				pass
-			pass
-		else:
-			if len(segment) != 4:
-				print(f"Segment {i+1} does not have 4 characters!")
-				parser.exit()
-				pass
-			pass
-		pass
-
-	return segments
+		else: 
+			raise('Invalid 18 bit code') 
 
 
-def main():
+	elif len(segments) == 18:
+		segments = (segments[0:4], segments[4:8], segments[8:12], segments[12:18])
+
+		if re.match('[^01]', ''.join(segments)):
+			return segments
+
+		else: 
+			raise('Invalid 18 bit code') 
+		
+
+	elif len(segments) > 120 and len(segments) < 140:
+		rearranged = _rearrange_140_to_18(segments)
+		return rearranged
+
+	elif len(segments) > 140:
+		raise('Invalid 140 bit code, too long')
+
+
+
+def generate_printable_code():
 	seg1, seg2, seg3, seg4 = _getID()
 
-	formatter = "01{seg1}{sep1}{seg2}{sep2}{seg3}{sep3}{seg4}{sep4}"
-	formatter = partial(
-		formatter.format,
-		seg1=seg1,
-		seg2=seg2,
-		seg3=seg3,
-		seg4=seg4
-	)
+	separators = [
+		['10', '10', '10', '01'],
+		['10', '01', '01', '10'],
+		['01', '10', '01', '01'],
+		['01', '01', '01', '01'],
+		['01', '01', '10', '10']
+	]
 
-	formattedCode = ""
-	formattedCode += formatter(
-		sep1="10",
-		sep2="10",
-		sep3="10",
-		sep4="01",
-	)
-	formattedCode += formatter(
-		sep1="10",
-		sep2="01",
-		sep3="01",
-		sep4="10",
-	)
-	formattedCode += formatter(
-		sep1="01",
-		sep2="10",
-		sep3="01",
-		sep4="01",
-	)
-	formattedCode += formatter(
-		sep1="01",
-		sep2="01",
-		sep3="01",
-		sep4="01",
-	)
-	formattedCode += formatter(
-		sep1="01",
-		sep2="01",
-		sep3="10",
-		sep4="10",
-	)
+	formattedCode = "" 
+	for interval in range(5):
+
+		formatter = "01{seg1}{sep1}{seg2}{sep2}{seg3}{sep3}{seg4}{sep4}"
+		formatter = partial(
+			formatter.format,
+			seg1=seg1,
+			seg2=seg2,
+			seg3=seg3,
+			seg4=seg4
+		)
+
+		formattedCode += formatter(
+			sep1=separators[interval][0],
+			sep2=separators[interval][1],
+			sep3=separators[interval][2],
+			sep4=separators[interval][3],
+		)
+
 
 	print(formattedCode)
 	pass
 
+def multiplexer():
+	"""Multiplex which format is the code in. """
 
+	  # noqa
+	parser.add_argument(
+		"Type",
+		dest= "type",
+		choices = ["bits/barcode", "Pod Name"]
+	)
+	if parser.parse_args().type == "bits/barcode":
+		code = get_info_from_bits()
+		generate_printable_code(code)
+
+	elif parser.parse_args().type == "Pod Name":
+		# get_info_from_database()
+		pass
+
+	else:
+		raise ValueError("Invalid type")
+	
 if __name__ == "__main__":
-	main()
-	pass
+	parser = argparse.ArgumentParser(description="Generate printable code for Nespresso Vertuo")
+	multiplexer()
+
