@@ -1,0 +1,54 @@
+Nome;Tamanho;Segmento 1;Segmento 2;Tamanho;Segmento 4;Intensidade;Tempo;Temperatura
+Alto Intenso;414 ml;1001;0010;1000;010110;;;
+Alto Dolce;414 ml;1111;0100;1000;010110;;;
+Giorno;230 ml;1010;1110;0100;001000;;;
+Colombia;230 ml;1100;0001;0100;010110;;;
+Melozio;230 ml;1100;1101;0100;010110;;;
+Odacio;230 ml;1100;0010;0100;010110;;;
+Stormio;230 ml;1100;0010;0100;010110;;;
+Madeline;230 ml;1010;0010;0100;010110;;;
+Vanizio;230 ml;1100;1101;0100;010110;;;
+Decaffeinato;230 ml;1001;1110;0100;001000;;;
+Blanco Forte;230 ml;1111;0100;0100;010110;;;
+Pumpkin Spice Cake;230 ml;1010;0010;0100;001110;;;
+Hazelino Muffin;230 ml;1100;1101;0100;001110;;;
+Ice Forte;230 ml;1010;0010;0100;010101;;;
+Vanilla Custard Pie;230 ml;1100;1101;0100;001101;;;
+Chocolate Fudge;230 ml;1111;0100;0100;001110;;;
+Ice Forte;230 ml;0101;0110;0100;100100;;;73
+Aflorazio;150 ml;1010;1000;1110;001110;;;
+Fortado;150 ml;1111;1011;1110;001110;;;
+Ethiopia Gran Lungo;150 ml;1100;0100;1110;010101;;;
+Costa Rica;150 ml;1001;1011;1110;100011;;;75
+Double Expresso Scuro;80 ml;1010;1011;0001;001110;;;
+Double Expresso Chiaro;80 ml;1100;1011;0001;001110;;;
+Blanco Leggero;80 ml;1111;1101;0001;001110;;;
+Iced Leggero;80 ml;1010;1011;0001;010101;;;
+Diavolito;40 ml;1001;1101;1011;001101;;;
+Altissio;40 ml;1010;1101;1011;010101;;;71
+Deca Intenso;40 ml;1010;0010;1011;010101;;;
+Paris Black;40 ml;1100;1000;1011;001101;;;
+Voltesso;40 ml;1001;0010;1011;010101;;;
+Coconut Ice;230 ml;1100;0001;0100;010101;;;
+Il Café;40 ml;1001;1011;1011;010011;;;70
+Altissio Decaf;40 ml;1010;0010;1011;100011;;;
+Tocanto;40 ml;1010;0001;1011;100011;;;
+Exotic Liminha;80 ml;1010;1011;0001;010101;;;
+Hawaii Kona;40 ml;1001;0010;1011;010101;;;
+Peru;40 ml;1100;0010;1011;001101;;;
+La Cumplida Refinada;80 ml;1010;0001;0001;001110;;;
+Solelio;230 ml;1010;1110;0100;001011;;;
+Pour Over Intense;535 ml ;0111;0001;1101;001101;;;
+Infiniment Double;80 ml;0101;0001;0001;111101;;;
+Inizio;150 ml;1100;0001;1110;001110;;;
+Arondio;150 ml;1111;1000;1110;001110;;;
+Orafio;40 ml;1010;0001;1011;001101;;;
+Double Expresso Dolce;80 ml;1010;0001;0001;001110;;;
+Caramel Cookie;230 ml;1100;1101;0100;010101;;;
+Mexico;230 ml;1001;1000;0100;010110;;;
+Bianco Doppio;80 ml;1111;1101;0001;010011;;;
+Bianco Piccolo;40 ml;1010;1101;1011;100101;;;
+Bianco Forte;230 ml;1001;1111;0100;001001;;;
+Alto Onice;355 ml;;;;;;;
+Alto Ambralto;355 ml;;;;;;;
+Cold Brew;355 ml;;;;;;;

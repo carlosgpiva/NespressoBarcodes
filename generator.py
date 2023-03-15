@@ -26,6 +26,8 @@ For example, Melozio has the following code
 def _rearrange_140_to_18(segments: str) -> tuple[str, str, str, str]:
 	"""Rearrange the 140 bit code to 18 bits, removing the separator bits and getting the code for capsule"""
 
+
+	#re pattern 01[01]{4}(10|01)[01]{4}(10|01)1011(10|01)[01]{6}(10|01)
 	splitted = segments.split("01", 1)
 
 	code = '01' + splitted[1] + splitted[0]
